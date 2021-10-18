@@ -27,6 +27,7 @@ const settings =  {
                   {name: 'brandname', to: '/'},
                   {name: 'booth', to: '/?sort=booth'},
                   {name: 'map', to: '/map'},
+                  {name: 'stats', to: '/stats'},
                 ]
             },
            
