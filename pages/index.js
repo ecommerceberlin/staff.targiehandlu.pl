@@ -1,7 +1,8 @@
 import {
   connect,
   reduxWrapper,
-  configure
+  configure,
+  Wrapper
 } from 'eventjuicer-site-components';
 
 import {useRouter} from 'next/router'  
@@ -10,13 +11,13 @@ import PageAdminReport from '../lib/PageAdminReport'
 
 const CustomPageAdminReport = () => {
   const {query:{sort}} = useRouter();
-  return (<PageAdminReport sort={sort} />)
+  return (<Wrapper><PageAdminReport sort={sort} /></Wrapper>)
 } 
 
 export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
   return await configure(props, {
     settings : settings,
-    preload : ["report"]
+    preload : ["report","bookingmap"]
   })
 })
 

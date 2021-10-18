@@ -16,6 +16,30 @@ const settings =  {
     
     },
 
+    bookingmap : {
+        wrapperProps: {
+            label: "exhibitors.map.title",
+            secondaryLabel: "exhibitors.map.opensales"
+        },
+        height : 400,
+        allowedGroupIds : [310, 311, 312, 313, 314],
+        disabledTicketIds : [],
+        boothStyleMapping: {
+            309: "light",
+            310: "standard",
+            311: "hot",
+            312: "superHot",
+            313: "ultra",
+            314: "grand",
+            315: "stage",
+            316: "networking",
+            321: "boothSold", //last minute / buffer
+            338: "boothSold", //test
+            339: "stage"
+        },
+        api : "https://stoiska.targiehandlu.pl/preorder",
+
+    },
 
     ui : {
 
