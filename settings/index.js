@@ -48,8 +48,10 @@ const settings =  {
             {
                 name: 'report',
                 items: [
-                  {name: 'brandname', to: '/'},
-                  {name: 'booth', to: '/?sort=booth'},
+                  {name: 'brandname.list', to: '/?details=0'},
+                  {name: 'booth.list', to: '/?sort=booth&details=0'},  
+                  {name: 'brandname.full', to: '/?details=1'},
+                  {name: 'booth.full', to: '/?sort=booth&details=1'},
                   {name: 'map', to: '/map'},
                   {name: 'stats', to: '/stats'},
                 ]

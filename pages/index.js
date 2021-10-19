@@ -10,8 +10,8 @@ const settings = require('../settings').default;
 import PageAdminReport from '../lib/PageAdminReport'
 
 const CustomPageAdminReport = () => {
-  const {query:{sort}} = useRouter();
-  return (<Wrapper><PageAdminReport sort={sort} /></Wrapper>)
+  const {query:{sort,details}} = useRouter();
+  return (<Wrapper><PageAdminReport sort={sort} details={Boolean(details)} /></Wrapper>)
 } 
 
 export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
