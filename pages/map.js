@@ -46,14 +46,12 @@ const allServices = {
   display: 1775
 }
 
-const useTickets = () => {
 
+const ExternalServices = ({checked, onChange}) => {
   const tickets = useDatasource({resource: "tickets", filters: {
     filter: ticket => ticket.role === "service_external"
   }})
-
-  return [tickets, keyBy((tickets || []), "id")]
-
+  return tickets.map(ticket => <ServiceSelector key={ticket.id} id={ticket.id} checked={checked.includes(ticket.id)} name={clear(get(ticket, "names.pl"))} onChange={onChange} />)
 }
 
 const CustomPageAdminReport = () => {
@@ -61,7 +59,6 @@ const CustomPageAdminReport = () => {
   const [checked, setChecked] = useState([])
   const setCheckedCallback = useCallback((id) => setChecked(oldChecked => oldChecked.includes(id) ? [...oldChecked.filter(item => item!=id)] : [...oldChecked, id]))
   const data = useDatasource({resource: "report"})
-  const [tickets, keyedTickets] = useTickets()
 
   const findBooths = () => {
     const exhibitorWithExternalServices = data.filter(exhibitor => exhibitor.purchases.some(ticket => checked.includes(ticket.id)))
@@ -74,16 +71,12 @@ const CustomPageAdminReport = () => {
     return booths;
   }
 
-  const renderServices = () => tickets.map(ticket => <ServiceSelector key={ticket.id} id={ticket.id} checked={checked.includes(ticket.id)} name={clear(get(ticket, "names.pl"))} onChange={setCheckedCallback} />)
-    
-  console.log(tickets)
-
   if(isEmpty(data)){
     return (<Wrapper first></Wrapper>)
   }
 
   return (<Wrapper first>
-  {renderServices()}
+  <ExternalServices checked={checked} onChange={setCheckedCallback} />
   <Bookingmap setting="bookingmap" marked={findBooths()} /></Wrapper>)
 } 
 
