@@ -36,8 +36,14 @@ module.exports = withSentryConfig(withTM({
         config.externals = ['react', ...config.externals];
       }
 
+      console.log(options)
+
+
       config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
-      config.resolve.alias['eventjuicer-site-components'] = path.resolve(__dirname, '.', 'node_modules', 'eventjuicer-site-components');
+
+      if(options.dev){
+        config.resolve.alias['eventjuicer-site-components'] = path.resolve(__dirname, '.', 'node_modules', 'eventjuicer-site-components');
+      }
 
       config.module.rules.push({
         test: /\.md$/,
