@@ -5,12 +5,12 @@ import {
   Wrapper
 } from 'eventjuicer-site-components';
 
+import {ExhibitorsStats} from 'eventjuicer-admin-site-components'
 
 const settings = require('../settings').default;
-import AdminReportStats from '../lib/AdminReportStats'
 
-const CustomPageAdminReport = () => {
-  return (<Wrapper label="Stats"><AdminReportStats /></Wrapper>)
+const PageStats = () => {
+  return (<Wrapper label="Stats"><ExhibitorsStats /></Wrapper>)
 } 
 
 export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
@@ -20,4 +20,4 @@ export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
   })
 })
 
-export default connect()(CustomPageAdminReport);
+export default connect()(PageStats);

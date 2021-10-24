@@ -1,6 +1,10 @@
-
 const path = require('path');
-const withTM = require('next-transpile-modules')(['eventjuicer-site-components'], {resolveSymlinks: false});
+
+const withTM = require('next-transpile-modules')([
+  'eventjuicer-site-components', 
+  'eventjuicer-admin-site-components'
+], {resolveSymlinks: false});
+
 const { withSentryConfig } = require('@sentry/nextjs');
 
 
@@ -33,7 +37,7 @@ module.exports = withSentryConfig(withTM({
       }
 
       config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
-
+      config.resolve.alias['eventjuicer-site-components'] = path.resolve(__dirname, '.', 'node_modules', 'eventjuicer-site-components');
 
       config.module.rules.push({
         test: /\.md$/,

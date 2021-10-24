@@ -5,13 +5,16 @@ import {
   Wrapper
 } from 'eventjuicer-site-components';
 
+import {
+  ExhibitorsList
+} from 'eventjuicer-admin-site-components'
+
 import {useRouter} from 'next/router'  
 const settings = require('../settings').default;
-import PageAdminReport from '../lib/PageAdminReport'
 
-const CustomPageAdminReport = () => {
+const PageList = () => {
   const {query:{sort,details}} = useRouter();
-  return (<Wrapper><PageAdminReport sort={sort} details={Boolean(parseInt(details))} /></Wrapper>)
+  return (<Wrapper><ExhibitorsList sort={sort} details={Boolean(parseInt(details))} /></Wrapper>)
 } 
 
 export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
@@ -21,4 +24,4 @@ export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
   })
 })
 
-export default connect()(CustomPageAdminReport);
+export default connect()(PageList);
