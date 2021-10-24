@@ -36,9 +36,6 @@ module.exports = withSentryConfig(withTM({
         config.externals = ['react', ...config.externals];
       }
 
-      console.log(options)
-
-
       config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
 
       if(options.dev){
