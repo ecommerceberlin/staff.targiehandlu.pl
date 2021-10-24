@@ -10,8 +10,8 @@ import {
   isEmpty,
   FormControlLabel,
   Checkbox,
-  keyBy,
-  get
+  get,
+  ToolBar
 } from 'eventjuicer-site-components';
 
 import {clear, findName} from '../lib/helpers'
@@ -34,17 +34,6 @@ const ServiceSelector = ({id, checked, name, onChange, color="primary"}) => (
 />)
 
 
-const allServices = {
-  electricity: 1769,
-  highvoltage: 1906,
-  chair: 1781,
-  table: 1788,
-  carpet: 1779,
-  counter: 1770,
-  booth_osb: 1772,
-  booth_fullprint: 1771,
-  display: 1775
-}
 
 
 const ExternalServices = ({checked, onChange}) => {
@@ -60,15 +49,18 @@ const CustomPageAdminReport = () => {
   const setCheckedCallback = useCallback((id) => setChecked(oldChecked => oldChecked.includes(id) ? [...oldChecked.filter(item => item!=id)] : [...oldChecked, id]))
   const data = useDatasource({resource: "report"})
 
-  const findBooths = () => {
-    const exhibitorWithExternalServices = data.filter(exhibitor => exhibitor.purchases.some(ticket => checked.includes(ticket.id)))
+  const findBoothsId = (source) => {
     let booths = [];
-    exhibitorWithExternalServices.forEach(exhibitor => {
+    source.forEach(exhibitor => {
         exhibitor.purchases.filter(ticket => ticket.formdata && "id" in ticket.formdata)
         .map(ticket => ticket.formdata.id)
         .forEach(formdata => booths.push(formdata))    
     })
-    return booths;
+    return booths
+  }
+  const findCheckedBooths = () => {
+    const exhibitorWithExternalServices = data.filter(exhibitor => exhibitor.purchases.some(ticket => checked.includes(ticket.id)))
+    return findBoothsId(exhibitorWithExternalServices);
   }
 
   if(isEmpty(data)){
@@ -77,7 +69,19 @@ const CustomPageAdminReport = () => {
 
   return (<Wrapper first>
   <ExternalServices checked={checked} onChange={setCheckedCallback} />
-  <Bookingmap setting="bookingmap" marked={findBooths()} /></Wrapper>)
+
+    <ToolBar 
+    data={data} 
+    indexes={[
+      ["profile", "lname"],
+      ["profile", "cname"],
+      ["profile", "booth"],
+      ["company", "name"]
+    ]}
+    render={(filtered) => <Bookingmap setting="bookingmap" marked={checked.length? findCheckedBooths(): filtered.length < data.length/3? findBoothsId(filtered): [] } /> } />
+   
+
+ </Wrapper>)
 } 
 
 export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
