@@ -6,21 +6,23 @@ import {
 } from 'eventjuicer-site-components';
 
 import {
-  ExhibitorsList
+  WidgetExhibitorsList
 } from 'eventjuicer-admin-site-components'
 
-import {useRouter} from 'next/router'  
 const settings = require('../settings').default;
 
 const PageList = () => {
-  const {query:{sort,details}} = useRouter();
-  return (<Wrapper><ExhibitorsList sort={sort} details={Boolean(parseInt(details))} /></Wrapper>)
+
+  return (
+  <Wrapper first>
+  <WidgetExhibitorsList />
+  </Wrapper>)
 } 
 
 export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
   return await configure(props, {
     settings : settings,
-    preload : ["report","bookingmap"]
+    preload : ["report", "bookingmap"]
   })
 })
 
