@@ -4,10 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "/Users/az/GITHUB/site-components/src/lib"
+			"path": "../site-components/src/lib"
 		},
 		{
-			"path": "/Users/az/GITHUB/admin-site-components"
+			"path": "../admin-site-components"
 		}
 	],
 	"settings": {}
