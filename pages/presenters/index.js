@@ -6,11 +6,11 @@ import {
   Wrapper
 } from 'eventjuicer-site-components';
 
-import { WidgetPresentersTable } from 'eventjuicer-admin-site-components'
+import { WidgetPresentersAvatars } from 'eventjuicer-admin-site-components'
 
-const settings = require('../settings').default;
+const settings = require('../../settings').default;
 
-const StaffPageAgenda = () => (<Wrapper first><WidgetPresentersTable /></Wrapper>)
+const StaffPagePresentersBrands = () => (<Wrapper first><WidgetPresentersAvatars /></Wrapper>)
 
 export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
   return await configure(props, {
@@ -19,4 +19,4 @@ export const getStaticProps = reduxWrapper.getStaticProps(async (props) => {
   })
 })
 
-export default connect()(StaffPageAgenda);
+export default connect()(StaffPagePresentersBrands);

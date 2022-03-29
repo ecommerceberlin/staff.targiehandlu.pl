@@ -51,6 +51,11 @@ const settings =  {
                   {name: 'brandname.list', to: '/'},
                   {name: 'map', to: '/map'},
                   {name: 'stats', to: '/stats'},
+
+                  {name: 'agenda', to: '/agenda'},
+                  {name: 'presenters.avatars', to: '/presenters'},
+                  {name: 'presenters.logotypes', to: '/presenters/brands'},
+                
                 ]
             },
            
