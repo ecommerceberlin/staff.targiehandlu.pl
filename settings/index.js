@@ -1,5 +1,23 @@
 
 const settings =  {
+
+
+    staff: {
+
+        exhibitor: {
+            details: {
+                show_party: false,
+            },
+            aggregates: {
+                assign_free_furniture: 0
+            }
+        },
+
+    },
+
+
+
+
       
     system : {
         ogTemplate: "",
@@ -64,38 +82,8 @@ const settings =  {
     },
 
    
-    common : {
-
-        organizer_name : '',
-        organizer_address : '',
-        organizer_regno : '',
-        event_name : 'targiehandlu.pl',
-        event_location : '',
-        event_date : '',
-        event_hours : '',
-    },
-
-    sales_support : {
-        title: 'event.support.hello',
-        description: 'event.support.description',
-        people : []
-    },
-
-   
-    footer : {
-        iconStyle : "black",
-        primaryStyle: null,
-        secondaryStyle: null,
-      //  iconStyle: "heroIcon",
-        links : []
-    },
-
-    appbar : {
-        profile: ["logout"],
-        links: [
-            // {label: "common.menu.visitors.vote", color: "secondary",  href: "/vote", as: "/vote", variant: "contained"}
-        ],
-    },
+  
+    
     
 };
   
